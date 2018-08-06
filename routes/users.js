@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+const JWTKey= require('../config')
 const User = require("../models/user");
 
 router.post("/signup", (req, res, next) => {
@@ -67,7 +67,7 @@ router.post("/login", (req, res, next) => {
                 email: user[0].email,
                 userId: user[0]._id
               },
-              "secret",
+              JWTKey,
               {
                   expiresIn: "10h"
               }
