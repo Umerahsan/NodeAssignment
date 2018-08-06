@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Movie = require("../models/movie");
+const auth= require('../service/auth');
 
 
-router.get('/all', (req, res) => {
+router.get('/all',auth, (req, res) => {
 
     Movie.find()
         .exec()
@@ -20,9 +21,9 @@ router.get('/all', (req, res) => {
         });
 });
 
-router.post('/add', (req, res, next) => {
+router.post('/add', auth,(req, res, next) => {
     var movie = new Movie({
-        _id: new mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(), 
         name: req.body.name
     });
     movie.save().then(result => {
