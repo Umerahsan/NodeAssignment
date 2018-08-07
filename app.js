@@ -6,9 +6,9 @@ const userRoutes=require('./routes/users');
 const movieRoutes=require('./routes/movie')
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
-const dbUser= require('./config');
+const config= require('./config');
 
-mongoose.connect("mongodb+srv://"+dbUser+"@cluster0-vw1mm.mongodb.net/NodeAssignment?retryWrites=true",
+mongoose.connect("mongodb+srv://"+config.dbUser+"@cluster0-vw1mm.mongodb.net/NodeAssignment?retryWrites=true",
 {useNewUrlParser: true} 
 )
 app.use(morgan('dev'))
